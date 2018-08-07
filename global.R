@@ -14,9 +14,17 @@ getTermMatrix <- function(f) {
   woorden = tm_map(woorden, content_transformer(tolower))
   woorden = tm_map(woorden, removePunctuation)
   woorden = tm_map(woorden, removeNumbers)
-  woorden = tm_map(woorden, removeWords,
-                    #c(stopwords("dutch")))
-                    c(stopwords("SMART"), "thy", "thou", "thee", "the", "and", "but"))
+
+  custom_stopwords <- c("de", 
+                      "is", 
+                      "die", 
+                      "het",
+                      "een",
+                      "dat",
+                      "dit"
+                      )
+
+  woorden = tm_map(woorden, removeWords, custom_stopwords)
   
   myDTM = TermDocumentMatrix(woorden,
                              control = list(minWordLength = 1,wordLengths=c(0,Inf)))
