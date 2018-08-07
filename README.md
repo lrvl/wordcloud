@@ -1,2 +1,2 @@
 # wordcloud
-Shiny - Simple wordcloud
+Shiny - Simple wordcloud 
